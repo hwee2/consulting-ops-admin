@@ -1,11 +1,11 @@
 # Consulting Ops Admin (기초)
 
 ## 1. 프로젝트 한 줄 요약
-보험 상담 운영을 위한 고객 DB를 관리하는 관리자용 백엔드(API) 프로젝트.
+보험 상담 운영을 위한 고객 DB를 관리하는 관리자용 백엔드(API) 프로젝트
 
-## 2. 목표 (왜 만들었나)
-- Spring Boot + JPA + MySQL 연결 과정을 이해한다.
-- Controller → Service → Repository 구조를 설명할 수 있게 만든다.
+## 2. 목표 
+- Spring Boot + JPA + MySQL 연결 과정을 이해
+- Controller → Service → Repository 구조를 설명할 수 있게 만듦
 
 ## 3. 기술 스택
 - Java 17
