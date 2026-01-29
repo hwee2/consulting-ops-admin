@@ -1,12 +1,38 @@
 package com.example.consulting_ops_admin.controller;
+
+import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
+import com.example.consulting_ops_admin.service.CustomerService;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
- * [역할] 고객(Customer) 관련 API 엔드포인트를 제공한다.
+ * [역할] 고객(Customer) 관련 API 엔드포인트를 제공
  * [흐름] Controller(요청/응답) → Service(비즈니스 규칙) → Repository(DB 접근)
- * [왜 나눔?] 요청 검증/응답 형식은 Controller, 규칙은 Service, DB는 Repository로 분리해 유지보수성을 올린다.
+ * 요청 검증/응답 형식은 Controller, 규칙은 Service, DB는 Repository로 분리
  * [테스트] POST /api/customers, GET /api/customers 로 동작 확인
  */
 
 
-
+@RestController
+@RequestMapping("/customers")
 public class CustomerController {
+
+    private final CustomerService customerService;
+
+    // DI 적용된 생성자 : 필요한 객체를 직접 생성하지 않고 생성자를 통해 주입 (컨트롤러가 서비스에 의존)
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    @PostMapping
+    public void createCustomer(@RequestBody CustomerCreateRequest request) {
+        // @RequestBody: JSON 데이터를 DTO 객체로 변환
+        customerService.create(request);
+        // 컨트롤러: Service 호출 → DTO 전달
+        // 서비스: DTO를 Entity로 변환 → DB 저장
+    }
+
 }

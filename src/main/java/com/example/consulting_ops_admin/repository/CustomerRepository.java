@@ -2,6 +2,7 @@ package com.example.consulting_ops_admin.repository;
 
 import com.example.consulting_ops_admin.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Customer 엔티티를 기준으로
@@ -10,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  */
 
-
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {// save(), findAll(), findById(), deleteById() 같은 기본 CRUD를 제공
 
     }
