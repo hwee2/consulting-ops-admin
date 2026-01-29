@@ -15,7 +15,7 @@
 - Gradle
 
 ## 4. 기능 범위 
-- [ ] 고객 등록 (POST /api/customers)
+- [ㅇ] 고객 등록 (POST /api/customers) - 1/29 완료
 - [ ] 고객 목록 조회 (GET /api/customers)
 - [ ] 고객 상세 조회 (GET /api/customers/{id})
 - [ ] 고객 정보 수정 (PATCH /api/customers/{id})
