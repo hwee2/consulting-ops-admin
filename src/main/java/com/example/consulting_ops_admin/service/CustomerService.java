@@ -5,6 +5,8 @@ import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * [역할] 업무 규칙 및 비즈니스 로직 담당
  * [흐름] Controller → Service → Repository → DB
@@ -26,5 +28,9 @@ public class CustomerService {
                 request.getPhone()
         ); //컨트롤러가 호출하면 수행되는 부분 / dto > entity로 변환, entity를 repository에 저장
         customerRepository.save(customer);
+    }
+
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
     }
 }

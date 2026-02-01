@@ -1,7 +1,7 @@
 # Consulting Ops Admin (기초)
 
 ## 1. 프로젝트 한 줄 요약
-보험 상담 운영을 위한 고객 DB를 관리하는 관리자용 백엔드(API) 프로젝트.
+보험 상담 운영을 위한 고객 DB를 관리하는 관리자용 백엔드(API) 프로젝트
 
 ## 2. 목표 (왜 만들었나)
 - Spring Boot + JPA + MySQL 연결 과정을 이해한다.
@@ -11,12 +11,12 @@
 - Java 17
 - Spring Boot 3.
 - Spring Data JPA
-- MySQL 8.0
+- MySQL 8.0.44
 - Gradle
 
 ## 4. 기능 범위 
 - [ㅇ] 고객 등록 (POST /api/customers) - 1/29 완료
-- [ ] 고객 목록 조회 (GET /api/customers)
+- [ㅇ] 고객 목록 조회 (GET /api/customers) - 2/1 완료
 - [ ] 고객 상세 조회 (GET /api/customers/{id})
 - [ ] 고객 정보 수정 (PATCH /api/customers/{id})
 - [ ] 고객 삭제 (DELETE /api/customers/{id})
