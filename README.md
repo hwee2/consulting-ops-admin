@@ -15,13 +15,13 @@
 - Gradle
 
 ## 4. 기능 범위 
-- [ㅇ] 고객 등록 (POST /api/customers) - 1/29 완료
-- [ㅇ] 고객 목록 조회 (GET /api/customers) - 2/1 완료
+- ☑ 고객 등록 (POST /api/customers) - 1/29 완료
+- ☑ 고객 목록 조회 (GET /api/customers) - 2/1 완료
 - [ ] 고객 상세 조회 (GET /api/customers/{id})
 - [ ] 고객 정보 수정 (PATCH /api/customers/{id})
-- [ ] 고객 삭제 (DELETE /api/customers/{id})
 - [ ] 상태 변경 (PENDING/APPROVED/REJECTED)
-- [ ] 검색 1개 (name 또는 phone)
+- [ ] 고객 정보 삭제 (DELETE /api/customers/{id})
+- [ ] 검색 (name 또는 phone)
 
 ## 5. 확장 계획
 - 제휴사 ON/OFF 제어 기능

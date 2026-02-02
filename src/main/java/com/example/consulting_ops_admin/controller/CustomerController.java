@@ -27,6 +27,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    //고객 등록
     @PostMapping
     public void createCustomer(@RequestBody CustomerCreateRequest request) {
         // @RequestBody: JSON 데이터를 DTO 객체로 변환
@@ -34,8 +35,16 @@ public class CustomerController {
         // 컨트롤러: Service 호출 > DTO 전달
         // 서비스: DTO를 Entity로 변환 > DB 저장
     }
+
+    // 고객 전체 조회
     @GetMapping //GET 요청을 처리하는 엔드포인트
     public List<Customer> getCustomers() {
         return customerService.findAll();
+    }
+
+    // 고객 상세 조회
+    @GetMapping("/{id}")
+    public Customer getCustomer(@PathVariable Long id) {
+        return customerService.findById(id);
     }
 }
