@@ -3,7 +3,9 @@ package com.example.consulting_ops_admin.service;
 import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.repository.CustomerRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class CustomerService {
 
     public Customer findById(Long id) {
         return customerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("고객이 존재하지 않습니다. id=" + id));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "고객이 존재하지 않습니다. id=" + id));
     }
 }
