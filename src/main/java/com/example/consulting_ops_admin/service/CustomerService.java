@@ -3,7 +3,11 @@ package com.example.consulting_ops_admin.service;
 import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.repository.CustomerRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 /**
  * [역할] 업무 규칙 및 비즈니스 로직 담당
@@ -26,5 +30,16 @@ public class CustomerService {
                 request.getPhone()
         ); //컨트롤러가 호출하면 수행되는 부분 / dto > entity로 변환, entity를 repository에 저장
         customerRepository.save(customer);
+    }
+
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
+
+    public Customer findById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "고객이 존재하지 않습니다. id=" + id));
     }
 }

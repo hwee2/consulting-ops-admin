@@ -1,12 +1,12 @@
 package com.example.consulting_ops_admin.controller;
 
+import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.service.CustomerService;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * [역할] 고객(Customer) 관련 API 엔드포인트를 제공
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -27,12 +27,24 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    //고객 등록
     @PostMapping
     public void createCustomer(@RequestBody CustomerCreateRequest request) {
         // @RequestBody: JSON 데이터를 DTO 객체로 변환
         customerService.create(request);
-        // 컨트롤러: Service 호출 → DTO 전달
-        // 서비스: DTO를 Entity로 변환 → DB 저장
+        // 컨트롤러: Service 호출 > DTO 전달
+        // 서비스: DTO를 Entity로 변환 > DB 저장
     }
 
+    // 고객 전체 조회
+    @GetMapping //GET 요청을 처리하는 엔드포인트
+    public List<Customer> getCustomers() {
+        return customerService.findAll();
+    }
+
+    // 고객 상세 조회
+    @GetMapping("/{id}")
+    public Customer getCustomer(@PathVariable Long id) {
+        return customerService.findById(id);
+    }
 }
