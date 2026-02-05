@@ -46,7 +46,7 @@
 # 3. 고객 상세 조회
 #### GET /api/customers/{id}
 
-- 고객 ID를 기준으로 단일 유저 정보를 조회한다.
+- 유저 ID를 기준으로 단일 유저 정보를 조회한다.
 
 ### Path Variable
 
@@ -78,7 +78,7 @@
 
 #### PATCH /api/customers/{id}
 
-등록된 고객의 이름 또는 전화번호 정보 수정
+등록된 유저의 이름 또는 전화번호 정보 수정
 
 ### Path Variable
 
@@ -113,7 +113,7 @@
 # 5. 고객 상태 변경
 #### PATCH /api/customers/{id}/status
 
-- 고객 상담 상태 변경
+- 유저 상담 상태 변경
 
 ### Path Variable
 
@@ -146,7 +146,7 @@
 # 6. 고객 삭제
 #### DELETE /api/customers/{id}
 
-- 특정 고객 정보 삭제
+- 특정 유저 정보 삭제
 
 ### Path Variable
 
