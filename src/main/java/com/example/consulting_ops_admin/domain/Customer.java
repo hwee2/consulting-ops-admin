@@ -31,13 +31,21 @@ public class Customer {
     private LocalDateTime createdAt;
 
     protected Customer() {// JPA가 DB에서 조회한 데이터를 객체로 만들 때 필요한 기본 생성자
-
     };
 
     public Customer(String name, String phone) { // 우리가 등록할 때 쓰는 생성자
         this.name = name; // 요청에서 받은 name 저장
         this.phone = phone; // 요청에서 받은 phone 저장
         this.createdAt = LocalDateTime.now(); // 생성 시간을 현재 시각으로 채움
+    }
+
+    public void update(String name, String phone) {
+        if (name != null) {
+            this.name = name;
+        }
+        if (phone != null) {
+            this.phone = phone;
+        }
     }
 
     public Long getId() {return id;}
