@@ -2,6 +2,7 @@ package com.example.consulting_ops_admin.service;
 
 import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
+import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.repository.CustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,11 @@ public class CustomerService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "고객이 존재하지 않습니다. id=" + id));
+    }
+
+    //수정 메서드 (Update) : DB에서 id에 해당하는 고객을 조회하고, 존재하면 그 고객 엔티티를 반환
+    public void update(Long id, CustomerUpdateRequest request) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("고객이 존재하지 않습니다. id=" + id));
     }
 }

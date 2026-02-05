@@ -40,7 +40,7 @@ public class Customer {
     }
 
     public void update(String name, String phone) {
-        if (name != null) {
+        if (name != null) { // 값이 있는 것만 수정하겠다는 뜻
             this.name = name;
         }
         if (phone != null) {
