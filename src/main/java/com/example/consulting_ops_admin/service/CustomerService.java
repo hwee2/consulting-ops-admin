@@ -6,6 +6,7 @@ import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.repository.CustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * [흐름] Controller → Service → Repository → DB
  * 저장/조회 작업 조합, 필요한 검증/가공을 한 곳에서 관리
  */
+
 
 @Service
 public class CustomerService {
@@ -45,8 +47,15 @@ public class CustomerService {
     }
 
     //수정 메서드 (Update) : DB에서 id에 해당하는 고객을 조회하고, 존재하면 그 고객 엔티티를 반환
+    @Transactional
     public void update(Long id, CustomerUpdateRequest request) {
+        System.out.println("name = " + request.getName());
+        System.out.println("phone = " + request.getPhone());
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("고객이 존재하지 않습니다. id=" + id));
+        customer.update(
+                request.getName(),
+                request.getPhone()
+        );
     }
 }
