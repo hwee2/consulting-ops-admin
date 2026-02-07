@@ -72,6 +72,8 @@ public class Customer {
         return phone;
     }
 
+    public CustomerStatus getStatus() { return status;}
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
