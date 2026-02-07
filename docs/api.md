@@ -50,9 +50,9 @@
 
 ### Path Variable
 
-- Name: id
-- Type: Long
-- Description: 유저 ID
+- **Name**: id
+- **type**: Long
+- **Description**: 유저 ID
 
 
 ### Response
@@ -82,9 +82,9 @@
 
 ### Path Variable
 
-- Name: id
-- Type: Long
-- Description: 유저 ID
+- **Name**: id
+- **type**: Long
+- **Description**: 유저 ID
 
 
 ### Request Body
@@ -117,9 +117,9 @@
 
 ### Path Variable
 
-- Name: id
-- Type: Long
-- Description: 유저 ID
+- **Name**: id
+- **type**: Long
+- **Description**: 유저 ID
 
 ### Request Body
 
@@ -150,9 +150,9 @@
 
 ### Path Variable
 
-- Name: id
-- Type: Long
-- Description: 유저 ID
+- **Name**: id
+- **type**: Long
+- **Description**: 유저 ID
 
 ### Response
 
@@ -161,18 +161,20 @@
 ### Customer Status
 
 #### Status	
-- PENDING:	상담 대기
-- APPROVED:	상담 승인
-- REJECTED:	상담 거절
+- **PENDING**:	상담 대기
+- **APPROVED**:	상담 승인
+- **REJECTED**:	상담 거절
 
+- 처음 등록 → **PENDING**
+- 관리자가 판단 → **APPROVED** 또는 **REJECTED**
 
 ### HTTP Status Code Policy
 #### Status Code	Description
-- 200 OK	요청 성공
-- 201 Created	리소스 생성
-- 204 No Content	삭제 성공
-- 400 Bad Request	잘못된 요청
-- 404 Not Found	리소스 없음
+- **200 OK**	요청 성공
+- **201 Created**	리소스 생성
+- **204 No Content**	삭제 성공
+- **400 Bad Request**	잘못된 요청
+- **404 Not Found**	리소스 없음
 
 
 ## Scope
