@@ -2,6 +2,7 @@ package com.example.consulting_ops_admin.controller;
 
 import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
+import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
 import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.service.CustomerService;
 import org.springframework.context.annotation.PropertySource;
@@ -49,11 +50,19 @@ public class CustomerController {
         return customerService.findById(id);
     }
 
-    //고객 정보 수정
+    // 고객 정보 수정
     @PatchMapping("/{id}")
-    public void updateCustomer (
+    public void updateCustomerInfo (
         @PathVariable Long id,
         @RequestBody CustomerUpdateRequest request) {
-        customerService.update(id, request);
+        customerService.updateCustomerInfo(id, request);
+    }
+
+    // 고객 상태 변경
+    @PatchMapping("/{id}/status")
+    public void changeCustomerStatus (
+            @PathVariable Long id,
+            @RequestBody CustomerStatusChangeRequest request) {
+        customerService.changeCustomerStatus(id, request);
     }
 }

@@ -27,6 +27,10 @@ public class Customer {
     @Column(length = 20)
     private String phone;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false) //null 비허용
+    private CustomerStatus status;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -35,19 +39,24 @@ public class Customer {
 
     ;
 
-    public Customer(String name, String phone) { // 우리가 등록할 때 쓰는 생성자
+    public Customer(String name, String phone) { // 등록할 때 쓰는 생성자
         this.name = name; // 요청에서 받은 name 저장
         this.phone = phone; // 요청에서 받은 phone 저장
+        this.status = CustomerStatus.PENDING; // 처음 등록할 땐 PENDING
         this.createdAt = LocalDateTime.now(); // 생성 시간을 현재 시각으로 채움
     }
 
-    public void update(String name, String phone) {
+    public void updateInfo(String name, String phone) {
         if (name != null) { // 값이 있는 것만 수정하겠다는 뜻
             this.name = name;
         }
         if (phone != null) {
             this.phone = phone;
         }
+    }
+
+    public void changeStatus(CustomerStatus status) {
+        this.status = status;
     }
 
 
