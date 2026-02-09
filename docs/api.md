@@ -121,6 +121,15 @@
 - **type**: Long
 - **Description**: 유저 ID
 
+#### Status
+- **PENDING**:	상담 대기
+- **APPROVED**:	상담 승인
+- **REJECTED**:	상담 거절
+
+- 처음 등록 → **PENDING**
+- 관리자가 판단 → **APPROVED** 또는 **REJECTED**
+
+
 ### Request Body
 
 {
@@ -157,16 +166,13 @@
 ### Response
 
 #### 204 No Content
+{
+"message": "고객 정보가 삭제되었습니다."
+}
+
 
 ### Customer Status
 
-#### Status	
-- **PENDING**:	상담 대기
-- **APPROVED**:	상담 승인
-- **REJECTED**:	상담 거절
-
-- 처음 등록 → **PENDING**
-- 관리자가 판단 → **APPROVED** 또는 **REJECTED**
 
 ### HTTP Status Code Policy
 #### Status Code	Description

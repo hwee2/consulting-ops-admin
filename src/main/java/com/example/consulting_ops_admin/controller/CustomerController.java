@@ -1,10 +1,12 @@
 package com.example.consulting_ops_admin.controller;
 
 import com.example.consulting_ops_admin.domain.Customer;
+import com.example.consulting_ops_admin.dto.ApiResponse;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
 import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.service.CustomerService;
+import org.apache.coyote.Response;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -55,24 +57,26 @@ public class CustomerController {
 
     // 고객 정보 수정
     @PatchMapping("/{id}")
-    public void updateCustomerInfo (
+    public ResponseEntity<ApiResponse> updateCustomerInfo (
         @PathVariable Long id,
         @RequestBody CustomerUpdateRequest request) {
         customerService.updateCustomerInfo(id, request);
+        return ResponseEntity.ok(new ApiResponse("고객 정보가 수정되었습니다."));
     }
 
     // 고객 상태 변경
     @PatchMapping("/{id}/status")
-    public void changeCustomerStatus (
+    public ResponseEntity<ApiResponse> changeCustomerStatus (
             @PathVariable Long id,
             @RequestBody CustomerStatusChangeRequest request) {
         customerService.changeCustomerStatus(id, request);
+        return ResponseEntity.ok(new ApiResponse("고객 상태가 변경되었습니다."));
     }
 
     // 고객 정보 삭제
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse> deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomerInfo(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new ApiResponse("고객 정보가 삭제되었습니다."));
     }
 }
