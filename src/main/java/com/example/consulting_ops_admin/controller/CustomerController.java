@@ -6,6 +6,9 @@ import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
 import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.service.CustomerService;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,5 +67,12 @@ public class CustomerController {
             @PathVariable Long id,
             @RequestBody CustomerStatusChangeRequest request) {
         customerService.changeCustomerStatus(id, request);
+    }
+
+    // 고객 정보 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomerInfo(id);
+        return ResponseEntity.noContent().build();
     }
 }
