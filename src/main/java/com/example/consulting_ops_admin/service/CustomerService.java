@@ -28,6 +28,7 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    // 고객 등록 메서드 (CREATE)
     public void create(CustomerCreateRequest request) {
         Customer customer = new Customer(
                 request.getName(),
@@ -40,6 +41,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    // 고객 조회 메서드 (READ)
     public Customer findById(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
@@ -47,7 +49,7 @@ public class CustomerService {
                         "고객이 존재하지 않습니다. id=" + id));
     }
 
-    //수정 메서드 (Update) : DB에서 id에 해당하는 고객을 조회하고, 존재하면 그 고객 엔티티를 반환
+    //수정 메서드 (UPDATE) : DB에서 id에 해당하는 고객을 조회하고, 존재하면 그 고객 엔티티를 반환
     @Transactional
     public void updateCustomerInfo(Long id, CustomerUpdateRequest request) {
         System.out.println("name = " + request.getName());
@@ -61,7 +63,7 @@ public class CustomerService {
         );
     }
 
-    // 상태 변경 메서드 (Change)
+    // 상태 변경 메서드 (CHANGE)
     @Transactional
     public void changeCustomerStatus(Long id, CustomerStatusChangeRequest request) {
         Customer customer = customerRepository.findById(id)
@@ -71,4 +73,14 @@ public class CustomerService {
                 request.getStatus()
         );
     }
+
+    // 고객 정보 삭제 메서드 (DELETE)
+    @Transactional
+    public void deleteCustomerInfo(Long id) {
+        if (!customerRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"고객이 존재하지 않습니다. id=" + id);
+        }
+        customerRepository.deleteById(id);
+    }
+    // 추후 상태/권한 조건 추가 예정
 }

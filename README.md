@@ -19,7 +19,7 @@
 - ☑ 고객 목록 조회 (GET /api/customers) - 2/1 완료
 - ☑ 고객 상세 조회 (GET /api/customers/{id}) - 2/2 완료
 - ☑ 고객 정보 수정 (PATCH /api/customers/{id}) - 2/6 완료
-- [ ] 상태 변경 (PENDING/APPROVED/REJECTED)
+- ☑ 상태 변경 (PENDING/APPROVED/REJECTED) - 2/8 완료
 - [ ] 고객 정보 삭제 (DELETE /api/customers/{id})
 - [ ] 검색 (name 또는 phone)
 
