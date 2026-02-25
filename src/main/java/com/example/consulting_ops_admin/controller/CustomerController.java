@@ -1,6 +1,7 @@
 package com.example.consulting_ops_admin.controller;
 
 import com.example.consulting_ops_admin.domain.Customer;
+import com.example.consulting_ops_admin.domain.CustomerResponse;
 import com.example.consulting_ops_admin.dto.ApiResponse;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
@@ -8,6 +9,9 @@ import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.service.CustomerService;
 import org.apache.coyote.Response;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,5 +82,17 @@ public class CustomerController {
     public ResponseEntity<ApiResponse> deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomerInfo(id);
         return ResponseEntity.ok(new ApiResponse("고객 정보가 삭제되었습니다."));
+    }
+    // 고객 검색
+    @GetMapping
+    public ResponseEntity<Page<CustomerResponse>> searchCustomers(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String phone,
+            @PageableDefault(size = 10) Pageable pageable
+    ) {
+        Page<CustomerResponse> result =
+                customerService.searchCustomers(name, phone, pageable);
+
+        return ResponseEntity.ok(result);
     }
 }

@@ -1,10 +1,14 @@
 package com.example.consulting_ops_admin.service;
 
 import com.example.consulting_ops_admin.domain.Customer;
+import com.example.consulting_ops_admin.domain.CustomerResponse;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
 import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
 import com.example.consulting_ops_admin.repository.CustomerRepository;
+import com.example.consulting_ops_admin.repository.CustomerSpecification;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,5 +86,21 @@ public class CustomerService {
         }
         customerRepository.deleteById(id);
     }
-    // 추후 상태/권한 조건 추가 예정
+    // 고객 검색
+    // 검색 결과를 페이지 단위로 반환
+    public Page<CustomerResponse> searchCustomers(
+            String name,
+            String phone,
+            Pageable pageable // pageable -> 페이지 정보 (page, size, sort)
+    ) {
+        Page<Customer> customers =
+                customerRepository.findAll( //Spring이 내부에서 SQL 생성
+                        CustomerSpecification.search(name, phone), //동적 WHERE 조건 생성
+                        pageable
+                );
+
+        // 변환 안 하면 엔티티인 상태고 DB 구조 그대로 노출됨
+        return customers.map(CustomerResponse::new); //Customer를 CustomerResponse로 변환 ->
+        // 결과를 Page<CustomerResponse>로 반환
+    }
 }

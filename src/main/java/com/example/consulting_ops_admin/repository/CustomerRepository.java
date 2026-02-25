@@ -2,6 +2,7 @@ package com.example.consulting_ops_admin.repository;
 
 import com.example.consulting_ops_admin.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
  */
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {// save(), findAll(), findById(), deleteById() 같은 기본 CRUD를 제공
+public interface CustomerRepository extends JpaRepository<Customer, Long>,
+        JpaSpecificationExecutor<Customer> {// save(), findAll(), findById(), deleteById() 같은 기본 CRUD를 제공
 
     }
 
