@@ -47,11 +47,11 @@ public class CustomerController {
         // 서비스: DTO를 Entity로 변환 > DB 저장
     }
 
-    // 고객 전체 조회
-    @GetMapping //GET 요청을 처리하는 엔드포인트
-    public List<Customer> getCustomers() {
-        return customerService.findAll();
-    }
+//    // 고객 전체 조회
+//    @GetMapping //GET 요청을 처리하는 엔드포인트
+//    public List<Customer> getCustomers() {
+//        return customerService.findAll();
+//    }
 
     // 고객 상세 조회
     @GetMapping("/{id}")
@@ -83,7 +83,7 @@ public class CustomerController {
         customerService.deleteCustomerInfo(id);
         return ResponseEntity.ok(new ApiResponse("고객 정보가 삭제되었습니다."));
     }
-    // 고객 검색
+    // 고객 검색 (특정 조건에 해당하는 고객만 조회)
     @GetMapping
     public ResponseEntity<Page<CustomerResponse>> searchCustomers(
             @RequestParam(required = false) String name,
