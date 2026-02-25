@@ -2,6 +2,7 @@ package com.example.consulting_ops_admin.controller;
 
 import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.domain.CustomerResponse;
+import com.example.consulting_ops_admin.domain.CustomerStatus;
 import com.example.consulting_ops_admin.dto.ApiResponse;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
@@ -88,10 +89,12 @@ public class CustomerController {
     public ResponseEntity<Page<CustomerResponse>> searchCustomers(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String phone,
+            @RequestParam(required = false) CustomerStatus status,
+            @RequestParam(defaultValue = "and") String condition,
             @PageableDefault(size = 10) Pageable pageable
     ) {
         Page<CustomerResponse> result =
-                customerService.searchCustomers(name, phone, pageable);
+                customerService.searchCustomers(name, phone, status, condition, pageable);
 
         return ResponseEntity.ok(result);
     }

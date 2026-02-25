@@ -2,6 +2,7 @@ package com.example.consulting_ops_admin.service;
 
 import com.example.consulting_ops_admin.domain.Customer;
 import com.example.consulting_ops_admin.domain.CustomerResponse;
+import com.example.consulting_ops_admin.domain.CustomerStatus;
 import com.example.consulting_ops_admin.dto.CustomerCreateRequest;
 import com.example.consulting_ops_admin.dto.CustomerStatusChangeRequest;
 import com.example.consulting_ops_admin.dto.CustomerUpdateRequest;
@@ -91,11 +92,13 @@ public class CustomerService {
     public Page<CustomerResponse> searchCustomers(
             String name,
             String phone,
+            CustomerStatus status,
+            String condition,
             Pageable pageable // pageable -> 페이지 정보 (page, size, sort)
     ) {
         Page<Customer> customers =
                 customerRepository.findAll( //Spring이 내부에서 SQL 생성
-                        CustomerSpecification.search(name, phone), //동적 WHERE 조건 생성
+                        CustomerSpecification.search(name, phone, status, condition), //동적 WHERE 조건 생성
                         pageable
                 );
 
